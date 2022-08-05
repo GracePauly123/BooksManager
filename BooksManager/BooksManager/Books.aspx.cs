@@ -28,7 +28,7 @@ namespace BooksManager
 
         private void bindDropdown()
         {
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
             String str = @"SELECT A.AName 
         ,A.AuthorID
          FROM [LIBRARY].[dbo].[Author] A ";
@@ -46,7 +46,7 @@ namespace BooksManager
         private void bindData()
         {
 
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
             String str = @"SELECT DISTINCT B.Id
       ,B.Quantity
       ,B.Title
@@ -120,7 +120,7 @@ B.AvailableQty,
 
         private void updateBook(int id, string qty)
         {
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
             String str = $"UPDATE  [LIBRARY].[dbo].[Books] SET QUANTITY = {qty} WHERE ID = {id}";
             SqlCommand cmd = new SqlCommand(str, conn);
             conn.Open();
@@ -131,7 +131,7 @@ B.AvailableQty,
         protected void GridView11_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id = int.Parse(GridView11.DataKeys[e.RowIndex]["Id"].ToString());
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
 
             conn.Open();
             SqlCommand cmd = new SqlCommand($"delete FROM  [LIBRARY].[dbo].[Books] where id={id}", conn);
@@ -142,7 +142,7 @@ B.AvailableQty,
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
 
             conn.Open();
             SqlCommand cmd = new SqlCommand($"INSERT INTO   [LIBRARY].[dbo].[Books] VALUES ('{txtBook.Text}', {ddAuthor.SelectedValue}, {txtQty.Text}, {txtQty.Text})", conn);

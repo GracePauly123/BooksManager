@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace BooksManager
             Label3.Text = "";
             int pk = (int)GridView1.SelectedDataKey[0];
             int bookid = (int)GridView1.SelectedDataKey[1];
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
 
             conn.Open();
             SqlCommand cmd = new SqlCommand($"DELETE FROM   [LIBRARY].[dbo].[BorrowedBooks] where  Id= {pk} ", conn);
@@ -42,7 +43,7 @@ namespace BooksManager
         private void bindAvailableData()
         {
 
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
             String str = @" SELECT B.Id BookId, B.Title,A.AName,
   CASE WHEN B.AvailableQty = 0 THEN 'N' Else 'Y' END isAvailable
   FROM [dbo].[Author] AS A
@@ -61,7 +62,7 @@ namespace BooksManager
         private void bindData()
         {
 
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
             String str = @"SELECT BB.Id,B.Id BookId, B.[Title],BB.TakenDate
   FROM [BorrowedBooks] As BB
   INNER JOIN [Books] AS B
@@ -95,7 +96,7 @@ WHERE BB.BorrowedId="+ Session["UserId"];
                  Label3.Text = "Out of stock";
                 return;
             }
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-H0KMA2L\\SQLEXPRESS; Initial Catalog='LIBRARY'; Integrated Security=True");
+            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["mycon"].ToString());
 
             conn.Open();
 

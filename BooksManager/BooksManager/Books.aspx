@@ -11,7 +11,7 @@
         <div>
     <asp:GridView ID="GridView11" runat="server" ForeColor="#333333" GridLines="None" DataKeyNames="Id" OnSelectedIndexChanged="GridView11_SelectedIndexChanged"
         
-        OnRowCancelingEdit="GridView11_RowCancelingEdit" OnRowEditing="GridView11_RowEditing" OnRowUpdating="GridView11_RowUpdating" AutoGenerateColumns="False" OnRowDeleting="GridView11_RowDeleting" AllowPaging="True" OnPageIndexChanging="GridView11_PageIndexChanging" PageSize="1" AllowSorting="True" OnSorting="GridView11_Sorting">
+        OnRowCancelingEdit="GridView11_RowCancelingEdit" OnRowEditing="GridView11_RowEditing" OnRowUpdating="GridView11_RowUpdating" AutoGenerateColumns="False" OnRowDeleting="GridView11_RowDeleting" AllowPaging="True" OnPageIndexChanging="GridView11_PageIndexChanging" PageSize="5" AllowSorting="True" OnSorting="GridView11_Sorting">
 
         <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
 
@@ -87,7 +87,7 @@
 
                 <ItemTemplate>
 
-                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("AvailableQty") %>'></asp:Label>
+                    <asp:Label ID="Label9" runat="server" Text='<%# Bind("AvailableQty") %>'></asp:Label>
 
                 </ItemTemplate>
 
